@@ -8,12 +8,13 @@ from datetime import datetime, timedelta, timezone
 from typing import Annotated, TypedDict
 from pydantic import BaseModel, Field
 from openai import OpenAI
-from google.colab import userdata
+# google.colab import moved inside try (Colab only)
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import Send
 
 # --- 1. Client & Constants Setup ---
 try:
+    from google.colab import userdata
     api_key = userdata.get('OPENAI_API_KEY')
 except Exception:
     api_key = os.environ.get("OPENAI_API_KEY", "")
