@@ -1,5 +1,22 @@
 name: 매일 브리핑
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
 
+      - name: 파이썬 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          # requirements.txt 파일이 있을 때만 cache 옵션을 사용하세요.
+          # 캐시할 파일이 없다면 아래 cache 줄을 주석 처리하거나 제거해야 합니다.
+          cache: 'pip'
+
+      - name: 의존성 설치
+        run: |
+          pip install -r requirements.txt
 on:
   schedule:
     - cron: "30 22 * * *"       # ① UTC 22:30 = KST 07:30
