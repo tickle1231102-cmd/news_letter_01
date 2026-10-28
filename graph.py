@@ -209,7 +209,7 @@ def publish(s: dict) -> dict:
              "when": a["at"].strftime("%m-%d %H:%M")} for a in s["verified"]]
     today = datetime.now().strftime("%Y-%m-%d")
     webhook = os.environ.get("DISCORD_WEBHOOK_URL")
-    dry_run = os.environ.get("DRY_RUN", "1") == "1"
+    dry_run = os.environ.get("DRY_RUN", 0") == "1"
     sent = send_discord_stub(today, make_lead(arts), arts, webhook=webhook, dry_run=dry_run)
     label = f"{len(arts)}건" if arts else "조용합니다"
     return {"log": [f"⑤ 발행   {label} · {'보냄' if sent else 'dry-run'}"]}
