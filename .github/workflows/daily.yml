@@ -1,7 +1,7 @@
 name: 매일 브리핑
 on:
   schedule:
-    - cron: "30 22 * * *"       # ① UTC 22:30 = KST 07:30
+    - cron: "0 2 * * *"       # ① UTC 22:30 = KST 07:30
   workflow_dispatch:             # ② 손으로도 돌릴 수 있게
     inputs:
       dry_run:
